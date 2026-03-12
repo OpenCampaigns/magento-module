@@ -1,0 +1,36 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+  release:
+    types: [published]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+
+    - name: Setup PHP
+      uses: shivammathur/setup-php@v2
+      with:
+        php-version: '8.1'
+
+    - name: Package Magento Module
+      run: |
+        mkdir -p release/OpenCampaigns/Protocol
+        cp -r * release/OpenCampaigns/Protocol/ || true
+        rm -rf release/OpenCampaigns/Protocol/release
+        cd release && zip -r ../opencampaigns-magento-module.zip OpenCampaigns/
+
+    - name: Upload Artifact
+      uses: actions/upload-artifact@v4
+      with:
+        name: opencampaigns-magento-module
+        path: opencampaigns-magento-module.zip
