@@ -1,0 +1,39 @@
+<?php
+/**
+ * System XML for OpenCampaigns Configuration
+ */
+?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <tab id="opencampaigns" translate="label" sortOrder="100">
+            <label>OpenCampaigns</label>
+        </tab>
+        <section id="opencampaigns" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Settings</label>
+            <tab>opencampaigns</tab>
+            <resource>OpenCampaigns_Protocol::config</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Publisher Identity Configuration</label>
+                
+                <field id="brand_name" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Brand Name</label>
+                </field>
+                
+                <field id="pubkey" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Nostr Public Key (Hex)</label>
+                    <comment>Auto-generated cryptographic identity for OpenCampaigns network</comment>
+                </field>
+                
+                <field id="privkey" translate="label" type="obscure" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Nostr Private Key (Hex)</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Encrypted</backend_model>
+                </field>
+                
+                <field id="signed_payload" translate="label" type="textarea" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Signed Campaign Payload</label>
+                    <comment>The active JSON response output via /.well-known/opencampaigns.json</comment>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

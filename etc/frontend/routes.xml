@@ -1,0 +1,12 @@
+<?php
+/**
+ * Routing XML for OpenCampaigns .well-known URI
+ */
+?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:App/etc/routes.xsd">
+    <router id="standard">
+        <route id="opencampaigns" frontName=".well-known">
+            <module name="OpenCampaigns_Protocol" />
+        </route>
+    </router>
+</config>
